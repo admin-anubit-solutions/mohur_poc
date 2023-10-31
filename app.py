@@ -5,10 +5,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from streamlit import multiselect, select_slider, selectbox
 import ast
-from st_aggrid import AgGrid, GridOptionsBuilder
-from st_aggrid.shared import GridUpdateMode
-from streamlit_modal import Modal
-import streamlit.components.v1 as components
+
 
 def get_recommendations(user_data, top_n=10):
 	print(user_data)
@@ -212,7 +209,7 @@ def main():
 					if row[entry]:
 						data.append(entry)
 				with st.expander(f"{row['name']} | {row['role']}"):
-					if 'image' in row:
+					if 'image' in row and row['image'] != '':
 						st.image(f"https://api.startupindia.gov.in/sih/api/file/user/image/Accelerator?fileName={row['image']}", width=300)
 					if 'budget' in row and row['budget'].split('_') != ['']:
 						budget = row['budget']
